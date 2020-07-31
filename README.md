@@ -34,10 +34,11 @@
 * [牛客网](https://www.nowcoder.com/)
 
 ## 操作系统和团队工具
-* [Linux操作系统]
-* [Git分布式版本控制]
-* [Maven软件项目管理]
-* [Jenkins持续集成]
+* [Linux操作系统](./MD/1-Operating%20systems%20and%20team%20tools/Linux.md)
+* [Git分布式版本控制](./MD/1-Operating%20systems%20and%20team%20tools/Git.md)
+* [Maven软件项目管理](./MD/1-Operating%20systems%20and%20team%20tools/Maven.md)
+* [Jenkins持续集成](./MD/1-Operating%20systems%20and%20team%20tools/Jenkins.md)
+* [面试题]
 
 ## 基础深入
 * [并发编程]
@@ -45,6 +46,7 @@
 * [设计模式]
 * [数据结构]
 * [算法]
+* [面试题]
 
 ## 框架源码
 
