@@ -31,19 +31,19 @@
 
 #### echo输出命令
 ```shell script
-# echo [选项] [输出内容]
+~ echo [选项] [输出内容]
 -e：支持反斜线控制的字符转换
 ```
 
 #### 第一个脚本
-````shell script
-# vi hello.sh
+```shell script
+~ vi hello.sh
 #!/bin/bash     // 标称我写的脚本是shell脚本
 echo -e 'Hello, World!'
 
 # chmod u+x hello.sh
 # ./hello.sh
-````
+```
 
 #### 脚本执行
 - 赋予执行权限，直接运行：chmod u+x shell.sh
@@ -53,7 +53,7 @@ echo -e 'Hello, World!'
 #### 历史命令与命令补全
 ###### 历史命令：默认保存1000条，可以在环境变量配置文件/etc/profile中进行修改
 ```shell script
-# history [选项] [历史命令保存文件]
+~ history [选项] [历史命令保存文件]
 -c 清空历史命令缓存
 -w 把缓存中的历史命令写入历史命令包文件中
 ```
@@ -68,16 +68,16 @@ echo -e 'Hello, World!'
 #### 命令别名与常用快捷键
 ###### 命令别名:重启后会失效
 ```shell script
-# alias 别名='原命令'
+~ alias 别名='原命令'
 例子:
-# alias ll=ls -l
-# alias vi=vim
-# alias rmf=rm -f
+~ alias ll=ls -l
+~ alias vi=vim
+~ alias rmf=rm -f
 
-# alias
+~ alias
 # 查询命令别名
 
-# unlias
+~ unlias
 # 删除别名
 ```
 ###### 命令执行时顺序
@@ -88,7 +88,7 @@ echo -e 'Hello, World!'
 
 ###### 让别名永久生效
 ```shell script
-# vi /root/.bashrc
+~ vi /root/.bashrc
 ```
 
 ###### Bash常用快捷键
@@ -133,7 +133,7 @@ echo -e 'Hello, World!'
 
 ###### 输入重定向
 ```shell script
-# wc [选项] [文件名]
+~ wc [选项] [文件名]
 -c 统计字节数
 -w 统计单词数
 -l 统计行数
@@ -148,17 +148,17 @@ echo -e 'Hello, World!'
 |\|\||命令1 \|\| 命令2|逻辑或，当命令1执行不正确，命令2才会执行；当命令1正确执行，则命令2不会执行|
 ```shell script
 例子
-# ls;date;cd /root
-# ls anaconda-ks.cfg && echo yes
-# ls /root/test || echo 'no'
+~ ls;date;cd /root
+~ ls anaconda-ks.cfg && echo yes
+~ ls /root/test || echo 'no'
 # 命令 && echo yes || echo no
 ```
 
 ###### 管道符
-````shell script
+```shell script
 # 命令1 | 命令2  // 命令1的正确输出作为命令2的操作对象
-# netstat -tpnl | grep 8080
-````
+~ netstat -tpnl | grep 8080
+```
 #### 通配符与其他特殊符号
 ###### 通配符
 | 通配符 | 作用 |
@@ -201,15 +201,15 @@ echo -e 'Hello, World!'
 4. 本地变量
     - 变量定义
     ```shell script
-   # s="Hello world." 
-   # echo $s 
+   ~ s="Hello world." 
+   ~ echo $s 
     ```  
    - 变量叠加
    ```shell script
-   # a=123
-   # a="$aa"456
-   # a=${aa}789
-   # echo $a
+   ~ a=123
+   ~ a="$aa"456
+   ~ a=${aa}789
+   ~ echo $a
     ```
    - 变量调用：echo
    - 变量查看：set
@@ -222,9 +222,9 @@ echo -e 'Hello, World!'
 &ensp;&ensp;用户自定义变量只是当前的Shell中生效，而环境变量会在当前Shell和这个Shell的所有子Shell当中生效。如果把环境变量写入相应的配置文件，那么这个环境变量就会在所有的Shell中生效
 2. 设置环境变量
     ```shell script
-   # export 变量名=变量值   // 设置环境变量
-   # env   // 查询变量
-   # unset 变量名   // 删除变量
+   ~ export 变量名=变量值   // 设置环境变量
+   ~ env   // 查询变量
+   ~ unset 变量名   // 删除变量
     ```
 3. 系统常见的环境变量
     - PATH：系统查找命令的路径
@@ -252,7 +252,7 @@ echo -e 'Hello, World!'
 
 ###### 接受键盘输入
 ```shell script
-# read [选项] [变量名]
+~ read [选项] [变量名]
 -p “提示信息”：在等待read输入时，输出的提示信息
 -t [秒数]：read命令会一直等待用户输入，使用此选项可以指定等待时间
 -n [字符数]：read命令只接受指定的字符数，就会执行
@@ -273,29 +273,29 @@ echo "Sex is $gender"
 #### 数值运算
 1. 数值运算方法1：declare申明变量类型
     ```shell script
-    # declare [+/-] [选项] 变量名
+    ~ declare [+/-] [选项] 变量名
     -：给变量设定类型属性
     +：取消变量的类型属性
     -i：将变量声明为整数型
     -x：将变量声明为环境变量
     -p：显示指定变量的被声明的类型
    
-   # aa=11
-   # bb=22
-   # declare -i cc=$aa+$bb
+   ~ aa=11
+   ~ bb=22
+   ~ declare -i cc=$aa+$bb
     ```
 2. 数值运算方法2：expr或let数值运算工具
     ```shell script
-    # aa=11
-    # bb=22
-    # dd=$(expr $aa + $bb)  // dd的值是aa和bb的和，"+"两边需要由空格
+    ~ aa=11
+    ~ bb=22
+    ~ dd=$(expr $aa + $bb)  // dd的值是aa和bb的和，"+"两边需要由空格
     ```
 3. 数值运算方法3："$((运算式))"或"$[运算式]"
     ```shell script
-    # aa=11
-    # bb=22
-    # ff=$(($aa+$bb))
-    # gg=$[$aa+$bb]
+    ~ aa=11
+    ~ bb=22
+    ~ ff=$(($aa+$bb))
+    ~ gg=$[$aa+$bb]
     ```
    
 #### 运算符：优先级由大到小递减
@@ -388,28 +388,28 @@ echo "Sex is $gender"
 |\\{n,\\}|表事其前面的字符出现不小于n此。例如：[0-9]\\{2,\\}表事两位及以上的数字|
 |\\{n,m\\}|表示其前面的字符至少出现n次，最多出现m次。例如：[a-z]\\{6,8\\}匹配6到8位的小写字母|
 ```shell script
-# grep "a*" test.txt    // 匹配所有内容，包含空白行
-# geep "aa*" test.txt   // 匹配至少包含有一个a的行
-# geep "aaa*" test.txt   // 匹配至少包含有连续两个a的字符串
-# grep "s..d" test.txt  // 匹配在s和d这两个字母之间一定有2个字符的单词
-# grep "s.*d" test.txt  // 匹配在s和d字母之间有任意字符
-# grep ".*" test.txt    // 匹配所有内容
-# grep "^[^a-z]" test.txt   // 匹配不用小写字母开头的行
-# grep "^[^a-zA-Z]" test.txt    //  匹配不用字母开头的行
-# grep "\.$" test.txt   // 匹配以.为结尾的行
+~ grep "a*" test.txt    // 匹配所有内容，包含空白行
+~ geep "aa*" test.txt   // 匹配至少包含有一个a的行
+~ geep "aaa*" test.txt   // 匹配至少包含有连续两个a的字符串
+~ grep "s..d" test.txt  // 匹配在s和d这两个字母之间一定有2个字符的单词
+~ grep "s.*d" test.txt  // 匹配在s和d字母之间有任意字符
+~ grep ".*" test.txt    // 匹配所有内容
+~ grep "^[^a-z]" test.txt   // 匹配不用小写字母开头的行
+~ grep "^[^a-zA-Z]" test.txt    //  匹配不用字母开头的行
+~ grep "\.$" test.txt   // 匹配以.为结尾的行
 ```
 ## 字符截取命令
 #### cut字段提取命令
 ```shell script
-# cut [选项] 文件名
+~ cut [选项] 文件名
 -f 列号： 提取第几列
 -d 分隔符： 按照指定分隔符分割
 例子 
-# cut /etc/passwd | grep /bin/bash | grep -v root | cut -d ":" -f 1  // 提取passwd文件中非root用户的用户名
+~ cut /etc/passwd | grep /bin/bash | grep -v root | cut -d ":" -f 1  // 提取passwd文件中非root用户的用户名
 ```
 #### printf命令
 ```shell script
-# printf '输出类型输出格式' 输出内容
+~ printf '输出类型输出格式' 输出内容
 输出类型：
 %[n]s: 输出字符串，n是数字指代输出几个字符，选填
 %[n]i: 输出整数。n是数字指代输出几个数字
@@ -425,7 +425,7 @@ echo "Sex is $gender"
 ```
 #### awk命令
 ```shell script
-# awk '条件1{动作1} 条件2{动作2}...' 文件名
+~ awk '条件1{动作1} 条件2{动作2}...' 文件名
 条件（Pattern）：
   一般使用关系表达式作为条件
   x > 10
@@ -436,14 +436,14 @@ echo "Sex is $gender"
   流程控制语句
 
 例子：
-# df -h | awk '{printf $1 "\t" $5 "\t" %6}'  // 截取df -h的第一列、第五列、第六列
-# df -h | grep vda1 | awk '{printf $5}' | cut -d '%' -f -1   // 提取ada1的磁盘占用百分比
-# df -h | grep vda1 | awk '{printf $5}' | awk 'BEGIN {FS="%"} {printf $1"\n"}' // 提取ada1的磁盘占用百分比
+~ df -h | awk '{printf $1 "\t" $5 "\t" %6}'  // 截取df -h的第一列、第五列、第六列
+~ df -h | grep vda1 | awk '{printf $5}' | cut -d '%' -f -1   // 提取ada1的磁盘占用百分比
+~ df -h | grep vda1 | awk '{printf $5}' | awk 'BEGIN {FS="%"} {printf $1"\n"}' // 提取ada1的磁盘占用百分比
 ```
   
 #### sed命令:sed是一种几乎包括在所有UNIX平台的轻量级流编辑器。sed主要用来将数据进行选取、替换、删除、新增的命令
 ```shell script
-# sed [选项] '[动作]' 文件名
+~ sed [选项] '[动作]' 文件名
 选项：
 -n：一般ed命令会把所有数据都输出到屏幕，如果加入次选项，则只会把经过sed命令处理的行输出到屏幕
 -e：允许对输入数据应用多条sed命令编辑
@@ -457,10 +457,271 @@ p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -
 s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！
 
 例子：
-# df -h | sed -n '2p' // 查看df -h命令第二行
-# sed '2,4d' test.txt   // 删除第2到第4行的数据，但不修改test.txt文件
-# sed
+~ df -h | sed -n '2p' // 查看df -h命令第二行
+~ sed '2,4d' test.txt   // 删除第2到第4行的数据，但不修改test.txt文件
+~ sed
 ```
 ## 字符处理命令
+#### sort排序命令
+```shell script
+~ sort [选项] 文件名
+选项：
+-f：忽略大小写
+-n：以数值型进行排序，默认使用字符串型排序
+-r：反向排序
+-t：指定分隔符，默认是分隔符是制表符
+-k n[,m]：按照hiding的字段范围排序。从第n字段开始，m字段结束
+
+例子：
+~ sort /etc/passwd
+```
+#### 统计命令wc
+```shell script
+~ wc [选项] 文件名
+选项：
+-l：只统计行数
+-w：只统计单词数
+-m：只统计字符数
+```
 ## 条件判断
+#### 按照文件类型进行判断
+| 测试选项 | 作用 |
+|:-----:|:-----|
+|-b 文件|判断文件是否存在，并且是否为块设备文件|
+|-c 文件|判断文件是否存在，并且是否为字符设备文件|
+|-d 文件|判断文件是否存在，并且是否为目录文件|
+|-e 文件|判断文件是否存在|
+|-f 文件|判断文件是否存在，并且是否为普通文件|
+|-L 文件|判断文件是否存在，并且是否为符号链接文件|
+|-p 文件|判断文件是否存在，并且是否为管道文件|
+|-s 文件|判断文件是否存在，并且是否为非空|
+|-S 文件|判断文件是否存在，并且是否为套接字文件|
+```shell script
+~ test -e /etc/passwd
+~ [ -e /etc/passwd ]
+~ [ -e /etc/passwd ] && echo "yes" || echo "no"
+// 两则作用一样，和ll的区别一个是给人看一个是给机器判断
+```
+#### 按照文件权限进行判断
+| 测试选项 | 作用 |
+|:-----:|:-----|
+|-r 文件|判断文件是否存在，并且是否该文件拥有读权限|
+|-w 文件|判断文件是否存在，并且是否该文件拥有写权限|
+|-x 文件|判断文件是否存在，并且是否该文件拥有执行权限|
+|-u 文件|判断文件是否存在，并且是否该文件拥有SUID权限|
+|-g 文件|判断文件是否存在，并且是否该文件拥有SGID权限|
+|-k 文件|判断文件是否存在，并且是否该文件拥有SBit权限|
+#### 两个文件之间进行比较
+| 测试选项 | 作用 |
+|:-----:|:-----|
+|文件1 -nt 文件2|判断文件1的修改时间是否比文件2新|
+|文件1 -ot 文件2|判断文件1的修改时间是否比文件2旧|
+|文件1 -ef 文件2|判断文件1是否和文件2的Inode号一致，可以理解为两个文件是否为同一文件。这个判断用于判断硬链接是很好的方法|
+#### 两个整数之间比较
+| 测试选项 | 作用 |
+|:-----:|:-----|
+|整数1 -eq 整数2|判断整数1是否和整数2相等|
+|整数1 -ne 整数2|判断整数1是否和整数2不相等|
+|整数1 -gt 整数2|判断整数1是否大于整数2|
+|整数1 -lt 整数2|判断整数1是否小于整数2|
+|整数1 -ge 整数2|判断整数1是否大于等于整数2|
+|整数1 -le 整数2|判断整数1是否小于等于整数2|
 ## 流程控制
+#### 单分支if条件语句
+- if语句使用fi结尾，和一般语言使用大括号结尾不同
+- [条件判断式]就是使用test命令判断，所以中括号和条件判断式之间必须有空格
+- then后面跟符合条件之后执行的程序，可以放在[]之后，用“;”分割。也可以换行写入，就不需要“;”了
+```shell script
+if [ 条件判断式 ]; then
+    程序
+if
+或者
+if [ 条件判断式 ]
+    then
+        程序
+fi
+
+# 例子1：监控磁盘空间使用率
+#!/bin/bash
+rate=$(df -h | grep "/dev/sda3" | awk '{print $5}' | cut -d "%" - f1)
+#把根分区使用率作为变量值赋予变量rate
+if [$rate -ge 80 ]
+    then
+        echo "Warning! /dev/sda3 is full!" 
+fi
+
+# 例子2：备份mysql数据库
+#!/bin/bash
+ntpdate asia.pool.ntp.org &>/dev/null
+# 同步系统时间
+date = $(date + %y%m%d)
+# 把当前系统时间按照"年月日"格式赋予变量date
+size=$(du -sh /var/lib/mysql)
+# 统计mysql数据库的大小，并把大小赋予size变量
+if [ -d /tmp/dbbak ]
+    then
+        echo "Date : $date!" > /tmp/dbbak/dbinfo.txt
+        echo "Date size : $size" >> /tmp/dbbak/dbinfo.txt
+        cd /tmp/dbbak
+        tar -zcf mysql-lib-$date.tar.gz /var/lib/mysql dbinfo.txt &>/dev/null
+        rm -rf /tmp/dbbak/dbinfo.txt
+    else
+        mkdir /tmp/dbbak
+        echo "Date : $date!" > /tmp/dbbak/dbinfo.txt
+        echo "Date size : $size" >> /tmp/dbbak/dbinfo.txt
+        cd /tmp/dbbak
+        tar -zcf mysql-lib-$date.tar.gz /var/lib/mysql dbinfo.txt &>/dev/null
+        rm -rf /tmp/dbbak/dbinfo.txt
+fi
+
+# 例子3：判断apach是否启动成功
+#!/bin/bash
+port=$(nmap -sT 127.0.0.1 | grep tcp | grep http | awk '{print $2}')
+# 使用nmap命令扫描服务器，并截取apache服务状态，赋予变量port
+if [ "$port" == "open" ]
+    then
+        echo "$(date) httpd is ok!" >> /tmp/autostart-acc.log
+    else
+        /etc/rc.d/init.d/httpd start &>/dev/null
+        echo "$(date) restart httpd!!" >> /tmp/autostart-err.log
+
+fi
+```
+
+#### 多分支if条件语句
+```shell script
+if [ 条件判断式1 ]
+    then
+        当条件判断式1成立时，执行程序1
+elif [ 条件判断式2 ]
+    then
+        当条件判断式2成立时，执行程序2
+    ......
+else
+    当所有条件都不成立时，最后执行此程序
+fi
+```
+
+#### case语句
+-  case语句和if...elif...else语句一样都是多分支条件语句，不过和if多分支条件语句不同的式，case语句只能判断一种条件关系，而if语句可以判断多种条件关系
+```shell script
+case $val in
+    "val1")
+        如果$val==val1,则执行程序1
+        ;;
+    "val2")
+        如果$val==val2,则执行程序2
+        ;;
+    *)
+        如果$val都不是以上的值，则执行此程序
+        ;;
+esac
+例子：
+#!/bin/bash
+# 判断用户输入
+read -p "Please choose yes/no " -t 30 cho
+case $cho in 
+    "yes")
+        echo "Your choose is yes!"
+        ;;
+    "no")
+        echo "Your choose is no!"
+        ;;
+    *)
+        echo "Your choose is error!"
+        ;;
+esac
+```
+
+#### for循环
+- 语法1
+```shell script
+for 变量 in 值1 值2 值3
+    do
+        程序
+    done
+
+例子1:打印时间
+#!/bin/bash
+for time in morning noon afternoon evening
+    do
+        echo "This time is $time"
+    done
+
+例子2：批量解压脚本
+#!/bin/bash
+cd /lamp
+ls *.tar.gz > ls.log
+for i in $(cat ls.log)
+    do
+        tar -zxf $i &>/dev/null
+    done
+rm -rf /lamp/ls.log
+```
+- 语法2
+```shell script
+for ((初始值；循环控制条件；条件变化))
+    do
+        程序
+    done
+
+例子1:从1加到100
+#!/bin/bash
+s=0
+for ((i=1;i<=100;i=i+1))
+    do
+        s=$(($s+$i))
+    done
+echo "The sum of 1+2+...+100 is : $s"
+
+例子2：批量添加指定数量用户
+#!/bin/bash
+read -p "Please input user name:" -t 30 name
+read -p "Please input the number of users:" -t 30 num
+read -p "Please input the password of users:" -t 30 pass
+if [ ! -z "$name" -a ! -z "$num" -a !-z "$pass" ]
+    then
+        y=$(echo $sum | sed 's/^[0-9]*$'//g)
+        if [ -z "$y" ]
+            then
+            for ((i=1;i<=$num;i=i+1))
+                do
+                    /usr/sbin/useradd $name$i &>/dev/null
+                    echo $pass |  /usr/bin/passwd --stdin $name$i &>/dev/null
+                done
+        fi
+fi
+```
+#### whilc循环与until循环
+- while循环时不定循环，也称做条件循环。只要条件判断式成立，循环就会一致继续，知道条件判断式不成立，循环才会停止。这就和for的固定循环不太一样
+```shell script
+while [ 条件判断式 ]
+    do
+        程序
+    done
+
+例子:从1加到100
+#!/bin/bash
+i=1
+s=0
+while [ $i -le 100 ]
+    do 
+        s=$(($s+$i))
+        i=$(($i+1))
+    done
+echo "The sum of 1+2+...+100 is : $s"
+```
+
+- until循环和while循环相反，until循环时只要条件判断式不成立则进行循环，并执行循环程序。一旦循环条件成立，则终止循环
+```shell script
+例子:从1加到100
+#!/bin/bash
+i=1
+s=0
+until [ $i -ge 100 ]
+    do 
+        s=$(($s+$i))
+        i=$(($i+1))
+    done
+echo "The sum of 1+2+...+100 is : $s"
+```

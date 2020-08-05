@@ -254,10 +254,10 @@ useradd [选项] 用户名
 -d：设置默认家目录
 -e：设置账户有效日期（yyyy-MM-dd）
 例子：
-# useradd kk //添加用户kk
-# useradd -g root kk //添加用户kk，并指定用户所在的组为root用户组
-# useradd -r kk //创建一个系统用户kk
-# useradd-d /home/myf kk //新添加用户kk，其home目录为/home/myf
+~ useradd kk //添加用户kk
+~ useradd -g root kk //添加用户kk，并指定用户所在的组为root用户组
+~ useradd -r kk //创建一个系统用户kk
+~ useradd-d /home/myf kk //新添加用户kk，其home目录为/home/myf
 //当用户名kk登录主机时，系统进入的默认目录为/home/myf
 ```
 
@@ -276,15 +276,15 @@ passwd [选项] 用户名
 指定口令最短存活期
 -i：口令过期后多少天停用账户
 例子：
-# passwd kk  //设置runoob用户的密码
+~ passwd kk  //设置runoob用户的密码
 Enter new UNIX password:  //输入新密码，输入的密码无回显
 Retype new UNIX password:  //确认密码
 passwd: password updated successfully
 
-# passwd -S kk  // 显示账号密码信息
+~ passwd -S kk  // 显示账号密码信息
 runoob P 05/13/2010 0 99999 7 -1
 
-# passwd -d ll // 删除用户密码
+~ passwd -d ll // 删除用户密码
 passwd: password expiry information changed.
 ```
 
@@ -297,8 +297,8 @@ usermod [选项] 用户名
 -L：临时锁定用户（Lock）
 -U：解锁用户锁定（Unlock）
 例子：
-# usermod -d /home/hnlinux kk  // 更改登录目录
-# usermod -u 777 kk  // 改变用户的uid
+~ usermod -d /home/hnlinux kk  // 更改登录目录
+~ usermod -u 777 kk  // 改变用户的uid
 ```
 
 ###### chage
@@ -312,9 +312,9 @@ chage [选项] 用户名
 -I 天数： 密码过后宽限天数（7字段）
 -E 日期：账户失效时间（8字段）
 例子：
-# chage -l kk   // 查看kk用户以及密码有效期
-# chage -M 60 -m 7 -W 7 kk  // 设置kk用户60天后密码过期，至少7天后才能修改密码，密码过期前7天开始收到告警信息。
-# chage -d 0 kk // 强制用户第一次登陆时修改密码
+~ chage -l kk   // 查看kk用户以及密码有效期
+~ chage -M 60 -m 7 -W 7 kk  // 设置kk用户60天后密码过期，至少7天后才能修改密码，密码过期前7天开始收到告警信息。
+~ chage -d 0 kk // 强制用户第一次登陆时修改密码
 ```
 
 #### 权限管理
@@ -344,8 +344,8 @@ chage [选项] 用户名
 2. sudo的操作对象时系统命令
 ###### sudo使用
 ```shell script
-# visudo
-// 实际修改的时/etc/sudoers文件
+~ visudo
+# 实际修改的时/etc/sudoers文件
 
 root ALL=(ALL)   ALL
 # 用户名 被管理主机的地址=（可使用的身份）  授权命令（绝对路径）
@@ -381,7 +381,7 @@ root ALL=(ALL)   ALL
 ###### df:显示目前在Linux系统上的文件系统的磁盘使用情况统计。df命令是从文件系统考虑的，不光要考虑文件占用的空间，还会统计被命令或程序占用的空间（最常见的就是文件已删除但是程序没有释放空间）
 ###### du：统计目录或文件大小，命令面向文件。
 ```shell script
-# du [选项] [目录或文件名]
+~ du [选项] [目录或文件名]
 -a 显示每个子文件的磁盘占用量。默许只统计子目录的磁盘占用量
 -h 使用习惯单位显示磁盘占用量，如KB、MB或GB等
 -s 统计总占用量，而不列出子目录和子文件的占用量
