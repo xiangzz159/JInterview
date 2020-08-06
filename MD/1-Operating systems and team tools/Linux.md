@@ -250,7 +250,7 @@ Editor，找到上面生成的LumaQQ目录里的lumaqq设置一个菜单项就�
 
 ###### useradd
 ```shell script
-useradd [选项] 用户名
+[root@localhost ~]# useradd [选项] 用户名
 -g：设置默认组
 -d：设置默认家目录
 -e：设置账户有效日期（yyyy-MM-dd）
@@ -264,7 +264,7 @@ useradd [选项] 用户名
 
 ###### passwd
 ```shell script
-passwd [选项] 用户名
+[root@localhost ~]# passwd [选项] 用户名
 -d：删除密码
 -f：强迫用户下次登录时必须修改口令
 -w：口令要到期提前警告的天数
@@ -291,7 +291,7 @@ passwd: password expiry information changed.
 
 ###### usermod
 ```shell script
-usermod [选项] 用户名
+[root@localhost ~]# usermod [选项] 用户名
 -u UID：修改用户的UID号
 -c 用户说明：修改用户的说明信息
 -G 组名：修改用户的附加组
@@ -304,7 +304,7 @@ usermod [选项] 用户名
 
 ###### chage
 ```shell script
-chage [选项] 用户名
+[root@localhost ~]# chage [选项] 用户名
 -l：列出用户的详细密码状态
 -d 日期：修改密码最后一次更改日期（shadow 3字段）
 -m 天数：两次密码修改间隔（4字段）
@@ -345,7 +345,7 @@ chage [选项] 用户名
 2. sudo的操作对象时系统命令
 ##### sudo使用
 ```shell script
-~ visudo
+[root@localhost ~]# visudo
 # 实际修改的时/etc/sudoers文件
 
 root ALL=(ALL)   ALL
@@ -381,7 +381,7 @@ root ALL=(ALL)   ALL
 ##### df:显示目前在Linux系统上的文件系统的磁盘使用情况统计。df命令是从文件系统考虑的，不光要考虑文件占用的空间，还会统计被命令或程序占用的空间（最常见的就是文件已删除但是程序没有释放空间）
 ##### du：统计目录或文件大小，命令面向文件。
 ```shell script
-~ du [选项] [目录或文件名]
+[root@localhost ~]# du [选项] [目录或文件名]
 -a 显示每个子文件的磁盘占用量。默许只统计子目录的磁盘占用量
 -h 使用习惯单位显示磁盘占用量，如KB、MB或GB等
 -s 统计总占用量，而不列出子目录和子文件的占用量
@@ -413,10 +413,9 @@ root ALL=(ALL)   ALL
 
 ##### fdisk用法：
 ```shell script
- fdisk [选项] <磁盘>    更改分区表
- fdisk [选项] -l <磁盘> 列出分区表
- fdisk -s <分区>        给出分区大小(块数)
-
+[root@localhost ~]# fdisk [选项] <磁盘>    更改分区表
+[root@localhost ~]# fdisk [选项] -l <磁盘> 列出分区表
+[root@localhost ~]# fdisk -s <分区>        给出分区大小(块数)
 选项：
  -b <大小>             扇区大小(512、1024、2048或4096)
  -c[=<模式>]           兼容模式：“dos”或“nondos”(默认)
@@ -453,7 +452,7 @@ root ALL=(ALL)   ALL
 ##### 查询已安装的服务
    - PRM包安装服的服务：
   ```shell script
-  ～ chlconfig --list
+  [root@localhost ~]# chlconfig --list
   # 查看服务自启动状态，可以看到所有RPM包安装的服务
   ```
   - 源码包安装的服务：查看服务安装位置
@@ -487,7 +486,7 @@ root ALL=(ALL)   ALL
   - 软连接：将启动脚本连接到/etc/init.d/目录下(ln -s /usr/local/apache2/bin/apachectl /etc/init.d/apache)
   - 让源码包的apache服务能被chkconfig与ntsysv命令管理自启动
   ```shell script
-  ~ vi /etc/init.d/apache
+  [root@localhost ~]# vi /etc/init.d/apache
   # chkconfig:35 86 76
   # 制定httpd脚本可以被chkconfig命令管理。格式是：chkconfig:运行级别 启动顺序 关闭顺序，启动顺序和关闭顺序不能和系统现有的服务冲突
   # 启动顺序和关闭顺序不能和系统现有的服务冲突
@@ -496,7 +495,116 @@ root ALL=(ALL)   ALL
   ```
 
 ### 系统管理
+#### 进程管理
+1. 进程简介
+  - 进程时正在执行的一个程序或者命令，每一个进程都是一个运行的实体，都有自己的地址空间，并占用一定的系统资源
+2. 进程管理的作用
+  - 判断服务器健康状态
+  - 查看系统中所有进程
+  - 杀死进程
+3. 查看系统中所有进程
+  ```shell script
+  [root@localhost ~]# ps aux
+  # 查看系统中所有进程，使用BSD操作系统格式
+  [root@localhost ~]# ps -le
+  # 查看系统中所有进程，使用Linux标准命令格式
+  ```
+  |Name|作用|
+  |:--|:---|
+  |USER|该进程是由哪个用户产生的|
+  |PID|进程的ID号|
+  |%CPU|该进程占用CPU资源百分比|
+  |%MEM|该进程占用物理内存的百分比|
+  |VSZ|该进程占用虚拟内存的大小，单位时KB|
+  |RSS|该进程占用实际物理内存的大小，单位是KB|
+  |TTY|该进程时在哪个终端中运行的。其中tty1-tty7代表本地控制台终端，tty1-tty6时本地的字符界面终端,tty7时图形终端.pts/0-256代表虚拟终端|
+  |STAT|进程状态。常见的状态有：R-运行、S-睡眠、T-终止状态、s-包含子进程、+-位于后台|
+  |START|该进程的启动时间|
+  |TIME|该进程占用CPU的运算时间|
+  |COMMAND|产生此进程的命令名|
+4. 查看系统健康状态
+```shell script
+[root@localhost ~]# top [选项]
+选项
+-d 秒数： 指定top命令刷新间隔，默认时3秒
+? 或 h：显示交互模式的帮助
+P：以CPU使用率排序（默认）
+M：以内存的使用率排序
+N：以PID排序
+q：退出top
+```
+5. 终止进程命令
+```shell script
+[root@localhost ~]# kill -l
+# 查看可用的进程信号
 
+[root@localhost ~]# killall [选项][信号] 进程名
+# 按照进程名杀死进程
+选项
+-i：交互式，询问是否要杀死某个进程
+-I：忽略进程名大小写
+
+[root@localhost ~]# pkill [信号][信号] 进程名
+# 按照进程名终止进程
+选项
+-t 终端号：按照终端号提出用户
+```
+|信号代号(常用)|信号名称|说明|
+|:--|:--|:--|
+|1|SIGHUP|该信号让进程立即关闭，然后重新读取配置文件之后重启|
+|2|SIGINT|程序终止信号，用于终止前台进程。相当于输出ctrl+c快捷键|
+|8|SIGFPE|在发生致命的算术运算错误时发生，不仅包括浮点运算错误，还包括溢出及除数为0等其他所有的算数错误|
+|9|SIGKILL|用来立即结束程序的运行，本信号不能被阻塞、处理和忽略。一般用于强制终止进程|
+|14|SIGALRM|时钟定时信号，计算的时实际的时间或时钟时间。alarm函数使用该信号|
+|15|SIGTERM|正常结束进程的信号，kill命令的默认信号。有时如果进程已经发生问题，这个信号时无法正常终止进程的，我们才会尝试SIGKILL信号|
+|18|SIGCONT|该信号可以让暂停的进程恢复执行，本信号不会被阻断|
+|19|SIGSTOP|该信号可以暂停前台进程，相当于输入ctrl+z。本信号不能被阻断|
+
+#### 工作管理
+1. 将程序放入后台执行:命令最后加上"&"
+2. 查看后台的工作：jobs -l
+3. 将后台暂停的工作恢复到前台执行：fg 工作号
+4. 将后台暂停的工作恢复到后台执行：bg 工作号
+
+#### 系统资源查看
+1. 监控系统资源：vmstat [刷新延时， 刷新次数]
+2. 开机时内核检查信息：dmesg
+3. 查看内存使用状态：free
+4. 启动时间和平均负载：uptime
+5. 查看系统与内核相关信息：uname
+6. 判断当前系统位数：file /bin/ls
+7. 查看当前Linux系统的发行版本：lsb_release -a
+8. 列出进程打开或使用的文件信息：lsof [选项]
+
+#### 系统定时任务
+1. crond服务管理与访问控制
+```shell script 
+[root@localhost ~]# service crond start
+[root@localhost ~]# chkconfig crond on
+```
+2. 用户的crontab设置
+```shell script
+[root@localhost ~]# crontab [选项]
+选项:
+-e：编辑crontab定时任务
+-l：查询crontab任务
+-r：删除当前用户所有的crontab任务
+# 进入crontab编辑界面，会打开vim编辑你的工作
+* * * * * command 
+```
+  - 第1个*：分钟
+  - 第2个*：小时
+  - 第3个*：天
+  - 第4个*：月
+  - 第5个*：星期几
+
+|时间|含义|
+|:--|:--|
+|45 22 * * * command|在22点45分执行命令|
+|0 17 * * 1 command|每周一的17点0分执行命令|
+|0 5 1,15 * * command|每月1号和15号的凌晨5点0分执行命令|
+|*/10 4 * * * command|每天凌晨4点，每隔10分钟执行一次命令|
+|0 5 * * 1-6 command|周一到周六每天凌晨5点0分执行命令|
 ### 日志管理
 
 ### 启动管理

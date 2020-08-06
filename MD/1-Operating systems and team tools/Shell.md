@@ -30,12 +30,12 @@
 ## Shell脚本的执行方式
 ### echo输出命令
 ```shell script
-~ echo [选项] [输出内容]
+[root@localhost ~]# echo [选项] [输出内容]
 -e：支持反斜线控制的字符转换
 ```
 ### 第一个脚本
 ```shell script
-~ vi hello.sh
+[root@localhost ~]# vi hello.sh
 #!/bin/bash     // 标称我写的脚本是shell脚本
 echo -e 'Hello, World!'
 
@@ -51,7 +51,7 @@ echo -e 'Hello, World!'
 ### 历史命令与命令补全
 #### 历史命令：默认保存1000条，可以在环境变量配置文件/etc/profile中进行修改
 ```shell script
-~ history [选项] [历史命令保存文件]
+[root@localhost ~]# history [选项] [历史命令保存文件]
 -c 清空历史命令缓存
 -w 把缓存中的历史命令写入历史命令包文件中
 ```
@@ -65,14 +65,14 @@ echo -e 'Hello, World!'
 ### 命令别名与常用快捷键
 #### 命令别名:重启后会失效
 ```shell script
-~ alias 别名='原命令'
+[root@localhost ~]# alias 别名='原命令'
 例子:
-~ alias ll=ls -l
-~ alias vi=vim
-~ alias rmf=rm -f
-~ alias
+[root@localhost ~]# alias ll=ls -l
+[root@localhost ~]# alias vi=vim
+[root@localhost ~]# alias rmf=rm -f
+[root@localhost ~]# alias
 # 查询命令别名
-~ unlias
+[root@localhost ~]# unlias
 # 删除别名
 ```
 #### 命令执行时顺序
@@ -82,7 +82,7 @@ echo -e 'Hello, World!'
 4. 第四顺位执行按照$PATH环境变量定义的目录查找顺序找到的第一个命令
 #### 让别名永久生效
 ```shell script
-~ vi /root/.bashrc
+[root@localhost ~]# vi /root/.bashrc
 ```
 #### Bash常用快捷键
 |  快捷键 | 作用 |
@@ -123,7 +123,7 @@ echo -e 'Hello, World!'
 |命令 >> 文件 1 2>>文件2|把正确的输出追加到文件1中，把错误的追加到文件2中|
 #### 输入重定向
 ```shell script
-~ wc [选项] [文件名]
+[root@localhost ~]# wc [选项] [文件名]
 -c 统计字节数
 -w 统计单词数
 -l 统计行数
@@ -138,15 +138,15 @@ echo -e 'Hello, World!'
 |\|\||命令1 \|\| 命令2|逻辑或，当命令1执行不正确，命令2才会执行；当命令1正确执行，则命令2不会执行|
 ```shell script
 例子
-~ ls;date;cd /root
-~ ls anaconda-ks.cfg && echo yes
-~ ls /root/test || echo 'no'
+[root@localhost ~]# ls;date;cd /root
+[root@localhost ~]# ls anaconda-ks.cfg && echo yes
+[root@localhost ~]# ls /root/test || echo 'no'
 # 命令 && echo yes || echo no
 ```
 #### 管道符
 ```shell script
 # 命令1 | 命令2  // 命令1的正确输出作为命令2的操作对象
-~ netstat -tpnl | grep 8080
+[root@localhost ~]# netstat -tpnl | grep 8080
 ```
 
 ### 通配符与其他特殊符号
@@ -191,15 +191,15 @@ echo -e 'Hello, World!'
 4. 本地变量
     - 变量定义
     ```shell script
-   ~ s="Hello world." 
-   ~ echo $s 
+   [root@localhost ~]# s="Hello world." 
+   [root@localhost ~]# echo $s 
     ```  
    - 变量叠加
    ```shell script
-   ~ a=123
-   ~ a="$aa"456
-   ~ a=${aa}789
-   ~ echo $a
+   [root@localhost ~]# a=123
+   [root@localhost ~]# a="$aa"456
+   [root@localhost ~]# a=${aa}789
+   [root@localhost ~]# echo $a
     ```
    - 变量调用：echo
    - 变量查看：set
@@ -210,9 +210,9 @@ echo -e 'Hello, World!'
 &ensp;&ensp;用户自定义变量只是当前的Shell中生效，而环境变量会在当前Shell和这个Shell的所有子Shell当中生效。如果把环境变量写入相应的配置文件，那么这个环境变量就会在所有的Shell中生效
 2. 设置环境变量
     ```shell script
-   ~ export 变量名=变量值   // 设置环境变量
-   ~ env   // 查询变量
-   ~ unset 变量名   // 删除变量
+   [root@localhost ~]# export 变量名=变量值   // 设置环境变量
+   [root@localhost ~]# env   // 查询变量
+   [root@localhost ~]# unset 变量名   // 删除变量
     ```
 3. 系统常见的环境变量
     - PATH：系统查找命令的路径
@@ -239,7 +239,7 @@ echo -e 'Hello, World!'
  |$!|后台运行的最后一个进程的进程号（PID）|
 #### 接受键盘输入
 ```shell script
-~ read [选项] [变量名]
+[root@localhost ~]# read [选项] [变量名]
 -p “提示信息”：在等待read输入时，输出的提示信息
 -t [秒数]：read命令会一直等待用户输入，使用此选项可以指定等待时间
 -n [字符数]：read命令只接受指定的字符数，就会执行
@@ -261,29 +261,29 @@ echo "Sex is $gender"
 ### 数值运算
 1. 数值运算方法1：declare申明变量类型
     ```shell script
-    ~ declare [+/-] [选项] 变量名
+    [root@localhost ~]# declare [+/-] [选项] 变量名
     -：给变量设定类型属性
     +：取消变量的类型属性
     -i：将变量声明为整数型
     -x：将变量声明为环境变量
     -p：显示指定变量的被声明的类型
    
-   ~ aa=11
-   ~ bb=22
-   ~ declare -i cc=$aa+$bb
+   [root@localhost ~]# aa=11
+   [root@localhost ~]# bb=22
+   [root@localhost ~]# declare -i cc=$aa+$bb
     ```
 2. 数值运算方法2：expr或let数值运算工具
     ```shell script
-    ~ aa=11
-    ~ bb=22
-    ~ dd=$(expr $aa + $bb)  // dd的值是aa和bb的和，"+"两边需要由空格
+    [root@localhost ~]# aa=11
+    [root@localhost ~]# bb=22
+    [root@localhost ~]# dd=$(expr $aa + $bb)  // dd的值是aa和bb的和，"+"两边需要由空格
     ```
 3. 数值运算方法3："$((运算式))"或"$[运算式]"
     ```shell script
-    ~ aa=11
-    ~ bb=22
-    ~ ff=$(($aa+$bb))
-    ~ gg=$[$aa+$bb]
+    [root@localhost ~]# aa=11
+    [root@localhost ~]# bb=22
+    [root@localhost ~]# ff=$(($aa+$bb))
+    [root@localhost ~]# gg=$[$aa+$bb]
     ```
 ### 运算符：优先级由大到小递减
 | 优先级 | 运算符 | 说明 |
@@ -378,30 +378,30 @@ echo "Sex is $gender"
 |\\{n,\\}|表事其前面的字符出现不小于n此。例如：[0-9]\\{2,\\}表事两位及以上的数字|
 |\\{n,m\\}|表示其前面的字符至少出现n次，最多出现m次。例如：[a-z]\\{6,8\\}匹配6到8位的小写字母|
 ```shell script
-~ grep "a*" test.txt    // 匹配所有内容，包含空白行
-~ geep "aa*" test.txt   // 匹配至少包含有一个a的行
-~ geep "aaa*" test.txt   // 匹配至少包含有连续两个a的字符串
-~ grep "s..d" test.txt  // 匹配在s和d这两个字母之间一定有2个字符的单词
-~ grep "s.*d" test.txt  // 匹配在s和d字母之间有任意字符
-~ grep ".*" test.txt    // 匹配所有内容
-~ grep "^[^a-z]" test.txt   // 匹配不用小写字母开头的行
-~ grep "^[^a-zA-Z]" test.txt    //  匹配不用字母开头的行
-~ grep "\.$" test.txt   // 匹配以.为结尾的行
+[root@localhost ~]# grep "a*" test.txt    // 匹配所有内容，包含空白行
+[root@localhost ~]# geep "aa*" test.txt   // 匹配至少包含有一个a的行
+[root@localhost ~]# geep "aaa*" test.txt   // 匹配至少包含有连续两个a的字符串
+[root@localhost ~]# grep "s..d" test.txt  // 匹配在s和d这两个字母之间一定有2个字符的单词
+[root@localhost ~]# grep "s.*d" test.txt  // 匹配在s和d字母之间有任意字符
+[root@localhost ~]# grep ".*" test.txt    // 匹配所有内容
+[root@localhost ~]# grep "^[^a-z]" test.txt   // 匹配不用小写字母开头的行
+[root@localhost ~]# grep "^[^a-zA-Z]" test.txt    //  匹配不用字母开头的行
+[root@localhost ~]# grep "\.$" test.txt   // 匹配以.为结尾的行
 ```
 
 
 ## 字符截取命令
 ### cut字段提取命令
 ```shell script
-~ cut [选项] 文件名
+[root@localhost ~]# cut [选项] 文件名
 -f 列号： 提取第几列
 -d 分隔符： 按照指定分隔符分割
 例子 
-~ cut /etc/passwd | grep /bin/bash | grep -v root | cut -d ":" -f 1  // 提取passwd文件中非root用户的用户名
+[root@localhost ~]# cut /etc/passwd | grep /bin/bash | grep -v root | cut -d ":" -f 1  // 提取passwd文件中非root用户的用户名
 ```
 ### printf命令
 ```shell script
-~ printf '输出类型输出格式' 输出内容
+[root@localhost ~]# printf '输出类型输出格式' 输出内容
 输出类型：
 %[n]s: 输出字符串，n是数字指代输出几个字符，选填
 %[n]i: 输出整数。n是数字指代输出几个数字
@@ -417,7 +417,7 @@ echo "Sex is $gender"
 ```
 ### awk命令
 ```shell script
-~ awk '条件1{动作1} 条件2{动作2}...' 文件名
+[root@localhost ~]# awk '条件1{动作1} 条件2{动作2}...' 文件名
 条件（Pattern）：
   一般使用关系表达式作为条件
   x > 10
@@ -428,13 +428,13 @@ echo "Sex is $gender"
   流程控制语句
 
 例子：
-~ df -h | awk '{printf $1 "\t" $5 "\t" %6}'  // 截取df -h的第一列、第五列、第六列
-~ df -h | grep vda1 | awk '{printf $5}' | cut -d '%' -f -1   // 提取ada1的磁盘占用百分比
-~ df -h | grep vda1 | awk '{printf $5}' | awk 'BEGIN {FS="%"} {printf $1"\n"}' // 提取ada1的磁盘占用百分比
+[root@localhost ~]# df -h | awk '{printf $1 "\t" $5 "\t" %6}'  // 截取df -h的第一列、第五列、第六列
+[root@localhost ~]# df -h | grep vda1 | awk '{printf $5}' | cut -d '%' -f -1   // 提取ada1的磁盘占用百分比
+[root@localhost ~]# df -h | grep vda1 | awk '{printf $5}' | awk 'BEGIN {FS="%"} {printf $1"\n"}' // 提取ada1的磁盘占用百分比
 ```
 ### sed命令:sed是一种几乎包括在所有UNIX平台的轻量级流编辑器。sed主要用来将数据进行选取、替换、删除、新增的命令
 ```shell script
-~ sed [选项] '[动作]' 文件名
+[root@localhost ~]# sed [选项] '[动作]' 文件名
 选项：
 -n：一般ed命令会把所有数据都输出到屏幕，如果加入次选项，则只会把经过sed命令处理的行输出到屏幕
 -e：允许对输入数据应用多条sed命令编辑
@@ -448,16 +448,16 @@ p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -
 s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！
 
 例子：
-~ df -h | sed -n '2p' // 查看df -h命令第二行
-~ sed '2,4d' test.txt   // 删除第2到第4行的数据，但不修改test.txt文件
-~ sed
+[root@localhost ~]# df -h | sed -n '2p' // 查看df -h命令第二行
+[root@localhost ~]# sed '2,4d' test.txt   // 删除第2到第4行的数据，但不修改test.txt文件
+[root@localhost ~]# sed
 ```
 
 
 ## 字符处理命令
 ### sort排序命令
 ```shell script
-~ sort [选项] 文件名
+[root@localhost ~]# sort [选项] 文件名
 选项：
 -f：忽略大小写
 -n：以数值型进行排序，默认使用字符串型排序
@@ -466,11 +466,11 @@ s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可
 -k n[,m]：按照hiding的字段范围排序。从第n字段开始，m字段结束
 
 例子：
-~ sort /etc/passwd
+[root@localhost ~]# sort /etc/passwd
 ```
 ### 统计命令wc
 ```shell script
-~ wc [选项] 文件名
+[root@localhost ~]# wc [选项] 文件名
 选项：
 -l：只统计行数
 -w：只统计单词数
@@ -492,9 +492,9 @@ s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可
 |-s 文件|判断文件是否存在，并且是否为非空|
 |-S 文件|判断文件是否存在，并且是否为套接字文件|
 ```shell script
-~ test -e /etc/passwd
-~ [ -e /etc/passwd ]
-~ [ -e /etc/passwd ] && echo "yes" || echo "no"
+[root@localhost ~]# test -e /etc/passwd
+[root@localhost ~]# [ -e /etc/passwd ]
+[root@localhost ~]# [ -e /etc/passwd ] && echo "yes" || echo "no"
 // 两则作用一样，和ll的区别一个是给人看一个是给机器判断
 ```
 ### 按照文件权限进行判断
