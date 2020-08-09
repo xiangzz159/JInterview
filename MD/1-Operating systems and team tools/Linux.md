@@ -52,8 +52,6 @@
 - [日志管理](#日志管理)
 - [启动管理](#启动管理)
 - [备份与恢复](#备份与恢复)
-- [服务器资源命令](#服务器资源命令)
-- [编译安装程序](#编译安装程序)
 - [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md)
 - [命令大全](https://man.linuxde.net/)
 
@@ -688,12 +686,164 @@ passwd: password expiry information changed.
       ```
 
 ### 启动管理
+#### CentOS 6.x启动管理
+1. 系统运行级别
+
+|运行级别|含义|
+|:--|:--|
+|0|关机|
+|1|单用户模式，可以想象为Windows的安全模式，主要用于系统修复|
+|2|不完全的命令行模式，不含NFS服务|
+|3|完全的命令行模式，就是标准的字符界面|
+|4|系统保留|
+|5|图形模式|
+|6|重启动|
+
+##### 运行级别命令
+```shell script
+[root@localhost ~]# init 运行级别
+# 改变运行级别命令
+[root@localhost ~]# runlevel
+# 查看运行级别命令
+```
+2. 系统启动过程
+
+![系统启动流程](./img/sysstart.png)
+
+##### initramfs内存文件系统
+  - CentOS 6.x中使用initramfs内存文件系统取代了CentOS 5.x中的initrd RAM Disk。他们的作用类似，可以通过启动引导程序加载到内存中，然后加载启动过程中所需要的内存模型，比如USB、SATA、SCSI硬盘的驱动和LVM、RAID文件系统的驱动
+  ```shell script
+  # 手动模拟initramfs解压建立仿真根目录
+  [root@localhost ~]# mkdir /tmp/initramfs
+  # 建立测试目录
+  [root@localhost ~]# cp /boot/initramfs-2.6.xxx.img /tmp/initramfs
+  [root@localhost ~]# cd /tmp/initramfs
+  [root@localhost ~]# file initramfs-2.6.xxx.img
+  # 得到时gzip格式的文件
+  [root@localhost ~]# mv initramfs-2.6.xxx.img initramfs-2.6.xxx.img.gz
+  # 加上后缀
+  [root@localhost ~]# gunzip initramfs-2.6.xxx.img.gz
+  # 解压
+  [root@localhost ~]# file initramfs-2.6.xxx.img.gz
+  # 查看解压后的文件格式,得到cpio格式的文件
+  [root@localhost ~]# cpio -ivcdu initramfs-2.6.xxx.img.gz
+  # 使用cpio解压
+  ```
+##### 调用/etc/init/rcS.conf配置文件
+  - 先调用/etc/rc.d/rc.sysinit,然后由/etc/rc.d/rc.sysinit配置文件进行Linux系统初始化
+  - 然后再调用/etc/inittab，然后由/etc/inittab配置文件确定系统的默认运行级别
+##### 调用/etc/rc.d/rc文件
+  - 运行级别参数传入/etc/rc.d/rc这个脚本之后，由这个脚本文件按照不同的运行级别启动/etc/rc[0,6].d/目录中的相应的程序
+  - /etc/rc3.d/k??开头的文件(??是数字)，会按照数字顺序一次关闭
+  - /etc/rc3.d/S??开头的文件(??是数字)，会按照数字顺序一次启动
+
+#### 启动引导程序grub
+1. Grub配置文件
+   - grub中分区表示
+
+    |硬盘|分区|Linux中设备文件名|Grub中设备文件名|
+    |:--|:--|:--|:--|
+    |第一块SCSI硬盘|第一个主分区|/dev/sda1|hd(0,0)|
+    |第一块SCSI硬盘|第二个主分区|/dev/sda2|hd(0,1)|
+    |第一块SCSI硬盘|扩展分区|/dev/sda3|hd(0,2)|
+    |第一块SCSI硬盘|第一个逻辑分区|/dev/sda5|hd(0,4)|
+    |第二块SCSI硬盘|第一个主分区|/dev/sdb1|hd(1,0)|
+    |第二块SCSI硬盘|第二个主分区|/dev/sdb2|hd(1,1)|
+    |第二块SCSI硬盘|扩展分区|/dev/sdb3|hd(1,2)|
+    |第二块SCSI硬盘|第一个逻辑分区|/dev/sdb5|hd(1,4)|
+
+   - grub配置文件
+
+   ```shell script
+    [root@localhost ~]# vi /boot/grub/grub.conf
+    default=0 
+    # 默认启动第一个系统
+    timeout=5
+    # 等待时间，默认是5秒
+    splashimage=(hd0,0)/grub/splash.xpm.gz
+    # 这里是指定grub启动时的背景图像文件的保存位置
+    hiddenmenu
+    # 隐藏菜单
+   ```
+2. Grub加密与字符界面分辨率调整
+   - grub加密
+   ```shell script
+   [root@localhost ~]# grub-md5-crypt
+   # 生成加密码串，然后将密码串加入到grub配置文件中
+   ```
+   - 纯字符界面分辨率调整
+   ```shell script 
+   [root@localhost ~]# grep "CONFIG_FRAMEBUFFER_CONSOLE" /boot/config-2.6.xxxx.el6.i686
+   # 检查内核是否支持分辨率修改
+   # 修改grub配置文件 kernel ..... vga=分辨率
+   ```
+#### 系统修复模式
+1. 单用户模式
+   - 遗忘root密码
+   - 修改系统默认运行级别
+2. 光盘修复模式
+   - 重要系统文件丢失，导致系统无法启动
+   - grub密码遗忘
+   - BIOS加密
+
+
+
 
 ### 备份与恢复
-
-### 服务器资源命令
-
-### 编译安装程序
+1. 概述：防止发生不可抗因素导致Linux服务器物理节点损毁导致文件的丢失或损坏，进而导致业务的停止，需要将数据信息备份起来，以备不时之需。
+   - Linux系统中需要备份的数据
+     - /root/
+     - /home/
+     - /var/spool/mail/
+     - /etc/
+     - 其他目录
+   - 安装服务的数据
+2. 备份策略
+   - 完全备份：完全备份就是指把所有需要备份的数据全部备份，当然完全备份可以备份整块硬盘，这个分区或某个具体的目录
+   - 增量备份：第一次备份使用完全备份，之后的备份都是备份新增数据（上一次备份到现在的新增数据），每次备份都和上一次备份比较
+   - 差异备份：第一次备份使用完全备份，第二次备份使用增量备份，第三次备份备份第二次到第三次的所有数据，第四次备份备份第二次到第四次的所有数据...每次备份都和第一次备份比较
+3. 常用命令：
+   - dump命令
+    ```shell script 
+    [root@localhost ~]# dump [选项] 备份之后的文件名 原文件或目录
+    选项：
+    -level：0-9十个备份级别
+    -f 文件名：指定备份之后的文件名
+    -u：备份成功之后，把备份时间记录再/etc/dumpdates文件
+    -v：显示备份过程中更多的输出信息
+    -j：调用bzlib库压缩备份文件，将备份文件压缩成.bz2格式
+    -w：显示允许被dump的分区和备份等级及备份时间
+    例子：
+    [root@localhost ~]# dump -0uj -f /root/boot.bak.bz2 /boot/
+    # 执行一次完全备份，压缩备份/boot/目录，更新备份时间
+    [root@localhost ~]# cat /etc/dumpdates
+    # 查看备份时间文件
+    [root@localhost ~]# cp install.log /boot/
+    # 复制日志文件到/boot分区
+    [root@localhost ~]# dump -1uj -f /root/boot.bak1.bz2 /boot
+    # 增量备份到/boot分区。并压缩
+    [root@localhost ~]# dump -W
+    # 查询分区的备份时间及备份级别等
+    ```
+    - restore命令
+    ```shell script
+    [root@localhost ~]# restore [模式选项] [选项]
+    选项模式：restore名称常用的模式有以下四种，这四个模式不能混用
+    -C：比较备份数据和实际数据的变化
+    -i：进入交互模式，手工选择需要恢复的文件
+    -t：查看模式，用于查看备份文件中拥有那些数据
+    -r：还原模式，用于数据还原
+    选项：
+    -f：指定备份文件的文件名
+    例子：
+    # 还原boot.bak.bz2分区备份
+    [root@localhost ~]# mkdir boot.test
+    [root@localhost ~]# cd boot.test/
+    [root@localhost ~]# restore -r -f /root/boot.bak.bz2
+    # 先还原完全备份的数据
+    [root@localhost ~]# restore -r -f /root/boot.bak1.bz2
+    # 恢复增量备份的数据
+    ```
 
 
 ## Linux核心理解
@@ -701,7 +851,7 @@ passwd: password expiry information changed.
 - 1. [自旋锁]
   2. [原子操作]
   3. [信号量]
-- [文件系统]
+- [文件系统](#文件系统)
 - [内存管理]
 - [网络系统]
 - [线程/进程/进程间通信]
