@@ -1,21 +1,22 @@
-# Git分布式版本控制
+# Maven软件项目管理
+- [Maven软件项目管理](#maven软件项目管理)
+- [Maven声明周期和插件](#maven声明周期和插件)
+- [使用Archtype生成项目骨架](#使用archtype生成项目骨架)
+- [使用Maven进行测试](#使用maven进行测试)
+- [Maven自定义Archtype](#maven自定义archtype)
+- [使用Nexus搭建私服](#使用nexus搭建私服)
+- [Maven插件编写](#maven插件编写)
 
-## 目录
-- [Git命令](#git命令)
-- [工作流剖析](#工作流剖析)
-- [分支切换checkout](#分支切换checkout)
-- [分支合并](#分支合并)
-- [分支合并及冲突解决](#分支合并及冲突解决)
-- [交互式rebase](#交互式rebase)
+# Maven声明周期和插件
 
-## Git命令
+# 使用Archtype生成项目骨架
 
-## 工作流剖析
+# 使用Maven进行测试
 
-## 分支切换checkout
+# Maven自定义Archtype
 
-## 分支合并
+# 使用Nexus搭建私服
 
-## 分支合并及冲突解决
+# Maven插件编写
 
-## 交互式rebase
+
