@@ -168,6 +168,20 @@ Maven的核心文件很小，主要的任务都是由插件来完成。定位到
 - 当然maven配置的中央插件仓库已经能满足我们需求，但是如果使用的插件找不到，也可以配置其它，在POM中或者settings.xml(在settings.xml配置在nexus私服中介绍)中加入其它插件仓库配置。
 
 # 使用Archtype生成项目骨架
+我们通过ide创建的maven项目都有相同的目录结构：
+- 在项目的根目录中放置pom.xml
+- 在src/main/java目录中放置项目的主代码
+- 在src/main/resource目录中放置项目的配置文件
+- 在src/test/java目录中放置项目的测试代码
+- 在src/test/resource目录中放置项目的测试配置文件
+
+我们称以上这些基本的目录结构和pom.xml文件内容为项目的骨架。项目的骨架是固定的，这样的好处就是为了避免重复造轮子。
+
+项目骨架的生成：
+```
+mvn archetype:generate
+```
+
 
 # 使用Maven进行测试
 
