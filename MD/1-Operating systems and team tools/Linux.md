@@ -1,15 +1,16 @@
 # Linux操作系统
 
-- [Linux简介](#linux简介)
-- [Linux虚拟机环境搭建](#linux虚拟机环境搭建)
-- [Linux主流发行版本和特点](#linux主流发行版本和特点)
-   - [UNIX主流发行版本](#unix主流发行版本)
-   - [Linux主流发行版本](#linux主流发行版本)
-- [Linux使用](./LinuxUsing.md)
-- [Linux核心理解](#linux核心理解)
-   - [同步机制](#同步机制)
-   - [用户态和内核态](#用户态和内核态)
-   - [进程管理](#进程管理)
+- [Linux操作系统](#linux操作系统)
+  - [Linux简介](#linux简介)
+  - [Linux虚拟机环境搭建](#linux虚拟机环境搭建)
+  - [Linux主流发行版本和特点](#linux主流发行版本和特点)
+    - [UNIX主流发行版本](#unix主流发行版本)
+    - [Linux主流发行版本](#linux主流发行版本)
+    - [Linux两大系列debian和redhat](#linux两大系列debian和redhat)
+  - [Linux核心理解](#linux核心理解)
+    - [同步机制](#同步机制)
+    - [用户态和内核态](#用户态和内核态)
+    - [进程管理](#进程管理)
 
 ## Linux简介
 1. 1965年，美国麻省理工学院（MIT）. 通用电器公司（GE）及AT&T的贝尔实验室联合开发Multics工程计划，其目标是开发一种交互式的具有多道程序处理能力的分时操作系统，但因Multics追求的目标过于庞大复杂，项目进度远远落后于计划，最后贝尔实验室宣布退出。
@@ -43,6 +44,13 @@
 |[Ubuntu](https://ubuntu.com/) |  debian  |  社区活跃，软件数量众多；但是Unity桌面的性能很低，并且不是很稳定，常常卡死。内置的软件大多数没用，你通常要花上一个星期才能把ubuntu打造成适合自己的系统。  |
 |[CoreOS](http://coreos.com/) |  other  |  对容器云的支持，能够方便的部署Kubernetes集群，直接无缝支持docker容器云的部署；但是etcd因为国情限制不能不能很好的部署，需要自己配置DNS才能完整部署  |
 [Linux的发行版本及不同版本的联系和区别](https://www.jianshu.com/p/c88a62ac8ca3)
+
+### Linux两大系列debian和redhat
+|系列|主要版本|包名|管理工具|处理单个软件包|装包例子|
+|:--|:--|:--|:--|:--|:--|
+|debian|Ubuntu|.deb|apt-get,apt(两者区别)|dpkg|apt install pkgname|
+|redhat|CentOS|.rpm|yum|rpm|yum -y(显示安装过程)|install pkgname|
+
 
 ## Linux核心理解
 - [同步机制](#同步机制)
