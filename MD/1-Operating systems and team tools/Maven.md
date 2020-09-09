@@ -514,8 +514,8 @@ nexus提供了强大的仓库管理功能,构件搜索功能,它基于REST,友�
    - 建立宿主仓库
    - 创建Nexus仓库组
    - 创建Nexus代理仓库
-   - 本地settings.xml的配置
-   - maven 项目 的pom.xml配置 
+   - 修改本地Maven的settings.xml
+   - 修改maven项目的pom.xml配置 
 > 搜索引擎查询详细步骤
 
 # Maven插件编写
