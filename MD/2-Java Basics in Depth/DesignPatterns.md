@@ -1,0 +1,64 @@
+- [设计模式基本原则](#设计模式基本原则)
+  - [开闭原则](#开闭原则)
+  - [里氏替换原则](#里氏替换原则)
+  - [依赖倒置原则](#依赖倒置原则)
+  - [单一职责原则](#单一职责原则)
+  - [接口隔离原则](#接口隔离原则)
+  - [迪米特法则](#迪米特法则)
+  - [合成复用原则](#合成复用原则)
+- [创新性模式](#创新性模式)
+  - [单例模式（Sigleton）](#单例模式sigleton)
+  - [原型模式（Prototype）](#原型模式prototype)
+  - [工厂模式（Factory）](#工厂模式factory)
+  - [制造者模式（Builder）](#制造者模式builder)
+- [行为型模式](#行为型模式)
+  - [模版方法（Template）](#模版方法template)
+  - [策略模式（Strategy）](#策略模式strategy)
+  - [命令模式（Command）](#命令模式command)
+  - [责任链模式（Chain）](#责任链模式chain)
+  - [状态模式（State）](#状态模式state)
+  - [观察者模式（Observer）](#观察者模式observer)
+  - [中介者模式（Mediator）](#中介者模式mediator)
+  - [访问者模式（Vistory）](#访问者模式vistory)
+  - [迭代器模式（Iterator）](#迭代器模式iterator)
+- [结构型模式](#结构型模式)
+  - [代理模式（Proxy）](#代理模式proxy)
+  - [适配器模式（Adpater）](#适配器模式adpater)
+  - [桥接模式（Bridger）](#桥接模式bridger)
+  - [装饰器模式（Decorator）](#装饰器模式decorator)
+  - [外观模式（Facade）](#外观模式facade)
+  - [组合模式（Composite）](#组合模式composite)
+
+# 设计模式基本原则
+## 开闭原则
+## 里氏替换原则
+## 依赖倒置原则
+## 单一职责原则
+## 接口隔离原则
+## 迪米特法则
+## 合成复用原则
+
+# 创新性模式
+## 单例模式（Sigleton）
+## 原型模式（Prototype）
+## 工厂模式（Factory）
+## 制造者模式（Builder）
+
+# 行为型模式
+## 模版方法（Template）
+## 策略模式（Strategy）
+## 命令模式（Command）
+## 责任链模式（Chain）
+## 状态模式（State）
+## 观察者模式（Observer）
+## 中介者模式（Mediator）
+## 访问者模式（Vistory）
+## 迭代器模式（Iterator）
+
+# 结构型模式
+## 代理模式（Proxy）
+## 适配器模式（Adpater）
+## 桥接模式（Bridger）
+## 装饰器模式（Decorator）
+## 外观模式（Facade）
+## 组合模式（Composite）
