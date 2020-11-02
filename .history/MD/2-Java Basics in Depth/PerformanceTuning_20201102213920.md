@@ -3,7 +3,6 @@
   - [JVM内存模型](#jvm内存模型)
   - [Java类文件结构](#java类文件结构)
   - [Java虚拟机类加载机制与类加载器](#java虚拟机类加载机制与类加载器)
-    - [类加载过程](#类加载过程)
   - [运行时数据区：深入连接堆/栈/元空间](#运行时数据区深入连接堆栈元空间)
   - [垃圾回收机制](#垃圾回收机制)
     - [CMS](#cms)
@@ -81,30 +80,7 @@ Class文件格式只有两种数据类型：无符号数和表。
 
 ## Java虚拟机类加载机制与类加载器
 Java源代码被编译为字节码文件后，需要加载进内存才能在程序中被使用。程序启动时并不会一次性加载程序要用的所有class文件，而是根据程序需要，通过Java的类加载机制（ClassLoader）动态加载某个class文件到内存当中。ClassLoader就是用来在运行时加载字节码文件进内存的，加载的过程是线程安全的。
-### 类加载过程
-1. 对字节码文件（class文件）进行加载
-2. 连接，将原始的类定义信息转入JVM运行（分配内存）
-    - 验证：JVM 需要核验字节信息是符合 Java 虚拟机规范的，否则就被认为是 VerifyError，这样就防止了恶意信息或者不合规信息危害 JVM 的运行，验证阶段有可能触发更多 class 的加载。
-    - 准备：创建类或者接口中的静态变量，并初始化静态变量的初始值。但这里的“初始化”和下面的显示初始化阶段是有区别的，侧重点在于分配所需要的内存空间，不会去执行更进一步的 JVM 指令。
-    - 解析：在这一步会将常量池中的符号引用（symbolic reference）替换为直接引用。在 Java 虚拟机规范中，详细介绍了类，接口，方法和字段等各方面的解析。
-3. 初始化，这一步真正去执行类初始化的代码逻辑，包括静态字段赋值的动作，以及执行类定义中的静态初始化块内的逻辑，编译器在编译阶段就会把这部分逻辑整理好，父类型的初始化逻辑优先于当前类型的逻辑。
-4. 类的使用
-5. 类的卸载，执行垃圾回收，过期类被卸载
-
-
 > [Java的ClassLoader机制](http://www.hollischuang.com/archives/199)
-
-- Bootstrp loader  
-  Bootstrp加载器是用C++语言写的，它是在Java虚拟机启动后初始化的，它主要负责加载%JAVA_HOME%/jre/lib,-Xbootclasspath参数指定的路径以及%JAVA_HOME%/jre/classes中的类。
-
-- ExtClassLoader  
-  Bootstrp loader加载ExtClassLoader,并且将ExtClassLoader的父加载器设置为Bootstrp loader.ExtClassLoader是用Java写的，具体来说就是 sun.misc.Launcher$ExtClassLoader，ExtClassLoader主要加载%JAVA_HOME%/jre/lib/ext，此路径下的所有classes目录以及java.ext.dirs系统变量指定的路径中类库。
-
-- AppClassLoader  
-  Bootstrp loader加载完ExtClassLoader后，就会加载AppClassLoader,并且将AppClassLoader的父加载器指定为 ExtClassLoader。AppClassLoader也是用Java写成的，它的实现类是 sun.misc.Launcher$AppClassLoader，另外我们知道ClassLoader中有个getSystemClassLoader方法,此方法返回的正是AppclassLoader.AppClassLoader主要负责加载classpath所指定的位置的类或者是jar文档，它也是Java程序默认的类加载器。
-
-![img](./img/6752752-69487010ef6ab85a.png)
-
 
 
 

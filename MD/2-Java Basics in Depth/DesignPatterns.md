@@ -40,6 +40,7 @@
 
 # 创新性模式
 ## 单例模式（Sigleton）
+https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650127610&idx=2&sn=cf043f3b38d1a9f99db147c4af2ee5d6&chksm=f36ba1dbc41c28cd79ec02d27da1805c9f7234c06dd195dfd957212b3c0f291225e778880538&scene=126&sessionid=1589247405&key=b152a177cb32a70e8469b2aaa790a338fc772f752fcc769894c4e85c818043c5486d64bdebe2f7db00570fed58e15413ccbc59e8b7bbda85c142fc9d05764bd9f49f22fd5b42633d41a77f3cb2bc7823&ascene=1&uin=MTI3NDQ2OTMxMw%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=zh_CN&exportkey=A6MtRuoQxjxlKeeXPIsfnr8%3D&pass_ticket=x%2BEl%2By4e9M6qmg1SJOCRDdhQPXlqbdrNhYEEvFuczalnq%2FWaOdYdI33chG2UfDrv
 ## 原型模式（Prototype）
 ## 工厂模式（Factory）
 ## 制造者模式（Builder）
