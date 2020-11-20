@@ -469,12 +469,12 @@ Java 编译器输出的指令流，基本上是一种基于栈的指令集架构
 ```
 |选项|作用|
 |:--:|:--:|
-|-dump|生成Java堆转储快照。格式为:-dump:[live, ]formate=b,file=<filename>,其中live子参数说明是否只jump出存活的对象|
-|-finalizeinfo|显示在F-Queue中等待Finalizer线程执行finalize方法的对象，只在Linux/Solaris平台下有效|
-|-heap|显示java堆详细信息，如使用那种回收器、参数配置、分代状况等。只在Linux/Solaris平台下有效|
-|-histo|显示堆中对象统计信息，包括类、实例数量、合计容量|
-|-permstat|在ClassLoader为统计口径显示永久代内存状态。只在Linux/Solaris平台下有效|
-|-F|当虚拟机进程对-dump选项没有响应时，可使用这个选项强制生成dunp快照。只在Linux/Solaris平台下有效|
+|-dump||
+|-finalizeinfo||
+|-heap||
+|-histo||
+|-permstat||
+|-F||
 
 ### jstat
 作用：用于jvm虚拟机统计信息监控的，主要用于监控jvm内存使用率。
@@ -483,35 +483,55 @@ Java 编译器输出的指令流，基本上是一种基于栈的指令集架构
 ```
 |选项|作用|
 |:--:|:--:|
-|-class|监视类装载、卸载数量、总空间以及类装载所耗的时间|
-|-gc|监视Java堆状况，包括Eden区、两个survivor区、老年代、永久代等的容量、已用空间、GC时间合计等信息|
-|-gccapacity|监视内容与-gc基本相同，但输出主要关注Java堆各个区域使用到的最大、最小空间|
-|-gcutil|监视内容与-gc基本相同，但输出主要关注已使用空间占总空间的百分比|
-|-gccause|与-gcutil功能一样，但是会额外输出导致上一次GC产出的原因|
-|-gcnew|监视新生代GC状况|
-|-gcnewcapacity|监视内容与-gcnew基本相同，输出主要关注使用到的最大、最小空间|
-|-gcold|监视老年代GC状况|
-|-gcoldcapacity|监视内容与-gcold基本相同，输出主要关注使用到的最大、最小空间|
-|-gcpermcapacity|输出永久代使用到的最大、最小空间|
-|-compiler|输出JIT编译器编译过的方法、耗时等信息|
-|-printcompilation|输出已经被JIT编译的方法|
+|||
+|||
+|||
+|||
+|||
+|||
 ### jinfo
 作用：实时查看java配置信息工具，它也可以实时调整虚拟机各项配置参数的值。
 ```shell script
 [root@localhost ~]# jinfo [option] vmid
 ```
-
+|选项|作用|
+|:--:|:--:|
+|||
+|||
+|||
+|||
+|||
+|||
 ### jhat
 作用：用于分析jmap生成的内存快照
 ```shell script
 [root@localhost ~]# jhat [ options ] heap-dump-file
 ```
-
+|选项|作用|
+|:--:|:--:|
+|||
+|||
+|||
+|||
+|||
+|||
 ### jstack
 作用：用于生成虚拟机当前时刻的线程快照，定位线程长时间停顿的原因。
 ```shell script
 [root@localhost ~]# ``jstack [ options ] vmid
 ```
+|选项|作用|
+|:--:|:--:|
+|||
+|||
+|||
+|||
+|||
+|||
+
+
+
+
 
 ## JVM服务器实战调优
 ### GCView
@@ -519,7 +539,6 @@ Java 编译器输出的指令流，基本上是一种基于栈的指令集架构
 
 # MySQL
 ## MySQL优化基础
-
 ## 多版本并发控制MVCC
 ## 应用程序性能剖析
 ## 慢查询日志剖析

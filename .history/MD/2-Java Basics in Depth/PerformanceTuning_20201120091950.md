@@ -31,12 +31,6 @@
       - [2.分派](#2分派)
       - [3.基于栈的字节码解释执行引擎](#3基于栈的字节码解释执行引擎)
   - [JDK性能监控于故障处理](#jdk性能监控于故障处理)
-    - [jps](#jps)
-    - [jmap](#jmap)
-    - [jstat](#jstat)
-    - [jinfo](#jinfo)
-    - [jhat](#jhat)
-    - [jstack](#jstack)
   - [JVM服务器实战调优](#jvm服务器实战调优)
     - [GCView](#gcview)
     - [Arthas](#arthas)
@@ -449,77 +443,12 @@ Java 编译器输出的指令流，基本上是一种基于栈的指令集架构
 虽然栈架构指令集的代码非常紧凑，但是完成相同功能需要的指令集数量一般会比寄存器架构多，因为出栈、入栈操作本身就产生了相当多的指令数量。更重要的是，栈实现在内存中，频繁的栈访问也意味着频繁的内存访问，相对于处理器来说，内存始终是执行速度的瓶颈。由于指令数量和内存访问的原因，所以导致了栈架构指令集的执行速度会相对较慢。
 
 ## JDK性能监控于故障处理
-
-### jps
-作用：用于查看虚拟机运行了那些进程，并输出这些进程LVMID，即进程id，它是使用最频繁的一个命令，因为其它工具需要依赖jps。首先需要jps输出jvm正在运行的的进程id；然后其它工具根据进程id进行监控对应的进程运行情况。
-```shell script
-[root@localhost ~]# jps [options] [hostid]
-```
-|选项|作用|
-|:--:|:--:|
-|-q|只输出LVMID，省略主类名|
-|-m|输出虚拟机进程启动时传递给主类main()函数的参数|
-|-l|输出主类全类名，如果进程执行的是jar包，输出jar路径|
-|-v|输出虚拟机进程的JVM启动参数|
-
-### jmap
-作用：内存映像工具，可用生成堆内存转存快照dump，它还可以查询finalize执行队列，java堆和永久代的详细信息，例如：空间利用率，当前用的是那种收集器等。
-```shell script
-[root@localhost ~]# jmap [option] vmid
-```
-|选项|作用|
-|:--:|:--:|
-|-dump|生成Java堆转储快照。格式为:-dump:[live, ]formate=b,file=<filename>,其中live子参数说明是否只jump出存活的对象|
-|-finalizeinfo|显示在F-Queue中等待Finalizer线程执行finalize方法的对象，只在Linux/Solaris平台下有效|
-|-heap|显示java堆详细信息，如使用那种回收器、参数配置、分代状况等。只在Linux/Solaris平台下有效|
-|-histo|显示堆中对象统计信息，包括类、实例数量、合计容量|
-|-permstat|在ClassLoader为统计口径显示永久代内存状态。只在Linux/Solaris平台下有效|
-|-F|当虚拟机进程对-dump选项没有响应时，可使用这个选项强制生成dunp快照。只在Linux/Solaris平台下有效|
-
-### jstat
-作用：用于jvm虚拟机统计信息监控的，主要用于监控jvm内存使用率。
-```shell script
-[root@localhost ~]# jstat [option vmid [ interval [s | ms] [ count] ] ]
-```
-|选项|作用|
-|:--:|:--:|
-|-class|监视类装载、卸载数量、总空间以及类装载所耗的时间|
-|-gc|监视Java堆状况，包括Eden区、两个survivor区、老年代、永久代等的容量、已用空间、GC时间合计等信息|
-|-gccapacity|监视内容与-gc基本相同，但输出主要关注Java堆各个区域使用到的最大、最小空间|
-|-gcutil|监视内容与-gc基本相同，但输出主要关注已使用空间占总空间的百分比|
-|-gccause|与-gcutil功能一样，但是会额外输出导致上一次GC产出的原因|
-|-gcnew|监视新生代GC状况|
-|-gcnewcapacity|监视内容与-gcnew基本相同，输出主要关注使用到的最大、最小空间|
-|-gcold|监视老年代GC状况|
-|-gcoldcapacity|监视内容与-gcold基本相同，输出主要关注使用到的最大、最小空间|
-|-gcpermcapacity|输出永久代使用到的最大、最小空间|
-|-compiler|输出JIT编译器编译过的方法、耗时等信息|
-|-printcompilation|输出已经被JIT编译的方法|
-### jinfo
-作用：实时查看java配置信息工具，它也可以实时调整虚拟机各项配置参数的值。
-```shell script
-[root@localhost ~]# jinfo [option] vmid
-```
-
-### jhat
-作用：用于分析jmap生成的内存快照
-```shell script
-[root@localhost ~]# jhat [ options ] heap-dump-file
-```
-
-### jstack
-作用：用于生成虚拟机当前时刻的线程快照，定位线程长时间停顿的原因。
-```shell script
-[root@localhost ~]# ``jstack [ options ] vmid
-```
-
 ## JVM服务器实战调优
 ### GCView
 ### Arthas
 
 # MySQL
 ## MySQL优化基础
-
 ## 多版本并发控制MVCC
 ## 应用程序性能剖析
 ## 慢查询日志剖析
